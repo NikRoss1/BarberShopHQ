@@ -17,6 +17,8 @@ end
 
 
 get '/' do
-	@barbers = Barber.all
+	@barbers = Barber.all # выводит сверху вниз
+
+	# @barbers = Barber.order "created_at DESC" # выводит снизу в верх
 	erb :index
 end
