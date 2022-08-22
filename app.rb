@@ -1,6 +1,7 @@
 #encoding: utf-8
 require 'rubygems'
 require 'sinatra'
+#require 'sinatra/reloader'
 require 'sinatra/activerecord'
 
 set :database, {adapter: "sqlite3", database: "barbershop.db"}
@@ -36,7 +37,8 @@ post '/visit' do
 	if c.save
 		erb "<h2>Спасибо, вы записались</h2>"
 	else
-		erb "Ошибка"
+		@error = c.errors.full_messages.first
+		erb :visit
 	end
 end
 
